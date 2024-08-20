@@ -1,7 +1,7 @@
-export default function TutorsPage() {
+export default function AppointmentsAdminPage() {
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        Tutor page <br></br>
+        appointments page <br></br>
         yok kerja yok
       </main>
     );
