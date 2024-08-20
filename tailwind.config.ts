@@ -16,5 +16,10 @@ const config: Config = {
     },
   },
   plugins: [],
+  colors: {
+    "yellow-primary": "#F7C738",
+    "blue-primary": "#4A4BC5",
+    "gray-primary": "#737373",
+  }
 };
 export default config;
