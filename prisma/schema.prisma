@@ -1,8 +1,103 @@
-generator client {
-      provider = "prisma-client-js"
-    }
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-    datasource db {
-      provider  = "postgresql"
-      url       = env("DATABASE_URL") // uses connection pooling
-    }
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Roles {
+  Mahasiswa
+  Tutor
+  Admin
+}
+
+enum Weekday {
+  Monday
+  Tuesday
+  Wednesday
+  Thursday
+  Friday
+  Saturday
+  Sunday
+}
+
+enum Media {
+  Online
+  Offline
+  Hybrid
+}
+
+enum AssignmentStatus {
+  Pending
+  Accepted
+  Declined
+}
+
+model User {
+  id            Int                    @id @default(autoincrement())
+  email         String                 @unique
+  password      String
+  fullName      String                 @unique
+  phoneNumber   String
+  role          Roles                   @default(Mahasiswa)
+  appointments  Appointment[]          @relation("CreatedAppointments")
+  assignments   AppointmentAssignment[] @relation("UserAppointments")
+  jurusan       String?
+  description   String?
+  notifications Notification[]    @relation("UserNotifications")
+}
+
+model Appointment {
+  id            Int                    @id @default(autoincrement())
+  title         String
+  description   String
+  creator       User                   @relation("CreatedAppointments", fields: [creatorId], references: [id])
+  creatorId     Int
+  availableDays Weekday[]
+  timeRange     Json                   // Stores time ranges for each available day
+  media         Media
+  assignments   AppointmentAssignment[] @relation("AppointmentAssignments")
+}
+
+model AppointmentAssignment {
+  id            Int                    @id @default(autoincrement())
+  user          User                   @relation("UserAppointments", fields: [userId], references: [id])
+  userId        Int
+  appointment   Appointment            @relation("AppointmentAssignments", fields: [appointmentId], references: [id])
+  appointmentId Int
+  selectedDate  DateTime               // Date selected by the user
+  selectedTime  DateTime               // Time selected by the user
+  peopleCount   Int                    // Number of people the user will bring (1 to 5)
+  status        AssignmentStatus       @default(Pending)
+  notifications Notification[]         @relation("AssignmentNotifications")
+}
+
+model Material {
+  id     Int    @id @default(autoincrement())
+  title  String
+  link   String
+}
+
+model Notification {
+  id                      Int                      @id @default(autoincrement())
+  user                    User                     @relation("UserNotifications", fields: [userId], references: [id])
+  userId                  Int
+  message                 String
+  status                  NotificationStatus       @default(NEW)
+  createdAt               DateTime                 @default(now())
+  appointmentAssignment   AppointmentAssignment?   @relation("AssignmentNotifications", fields: [appointmentAssignmentId], references: [id])
+  appointmentAssignmentId Int?
+}
+
+enum NotificationStatus {
+  NEW
+  READ
+}
