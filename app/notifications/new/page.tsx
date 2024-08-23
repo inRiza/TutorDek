@@ -14,6 +14,7 @@ const NewNotificationsPage = () => {
   const router = useRouter();
 
   useEffect(() => {
+    document.documentElement.classList.add('dark');
     const fetchNewNotifications = async () => {
       const response = await fetch('/api/user/notifications/new');
       const data = await response.json();

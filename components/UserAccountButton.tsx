@@ -7,7 +7,7 @@ const UserAccountButton = () => {
     <div>
         <Button onClick={() => signOut({
                 redirect: true,
-                callbackUrl: `${window.location.origin}/`
+                callbackUrl: `${window.location.origin}/sign-in`
             })} variant="destructive">
                 Sign Out
             </Button>
