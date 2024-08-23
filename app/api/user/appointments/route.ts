@@ -18,6 +18,7 @@ export async function GET(req: Request) {
       include: {
         appointment: {
           select: {
+            id: true,
             title: true,
             media: true,
             creator: {
