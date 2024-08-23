@@ -24,6 +24,7 @@ export async function GET(req: Request) {
               select: {
                 fullName: true,
                 phoneNumber: true,
+                jurusan: true,
               },
             },
           },
