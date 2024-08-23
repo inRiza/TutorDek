@@ -59,6 +59,7 @@ export const authOptions: NextAuthOptions = {
                 appointments: existingUser.appointments,
                 assignments: existingUser.assignments,
                 notifications: existingUser.notifications,
+                calendar: existingUser.calendar,
             }
           }
         })
@@ -78,6 +79,7 @@ export const authOptions: NextAuthOptions = {
                     assignments: user.assignments,
                     materials: user.materials,
                     notifications: user.notifications,
+                    calendar: user.calendar,
                 }
             }
             return token
@@ -97,6 +99,7 @@ export const authOptions: NextAuthOptions = {
                     assignments: token.assignments,
                     materials: token.materials,
                     notifications: token.notifications,
+                    calendar: token.calendar,
                 }
             }
         },  

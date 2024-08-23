@@ -53,6 +53,7 @@ model User {
   jurusan       String?
   description   String?
   notifications Notification[]    @relation("UserNotifications")
+  calendar String?
 }
 
 model Appointment {
@@ -77,6 +78,7 @@ model AppointmentAssignment {
   selectedTime  DateTime               // Time selected by the user
   peopleCount   Int                    // Number of people the user will bring (1 to 5)
   status        AssignmentStatus       @default(Pending)
+  duration      Duration               @default(ONE_HOUR)
   notifications Notification[]         @relation("AssignmentNotifications")
 }
 
@@ -100,4 +102,12 @@ model Notification {
 enum NotificationStatus {
   NEW
   READ
+}
+
+enum Duration {
+  ONE_HOUR         // 1 hour
+  ONE_AND_HALF     // 1.5 hours
+  TWO_HOURS        // 2 hours
+  TWO_AND_HALF     // 2.5 hours
+  THREE_HOURS      // 3 hours
 }
