@@ -1,7 +1,6 @@
 "use client"
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import '../../globals.css';
 
 type NotificationType = {
     id: number;
@@ -27,13 +26,12 @@ const NewNotificationsPage = () => {
     };
 
     fetchNewNotifications();
-    // document.body.classList.add('dark');  // Ensures dark mode is always active
   }, []);
 
   return (
-    <div className="container">
-      <h1 className="header">New Notifications</h1>
-      <ul className="notification-list">
+    <div>
+      <h1>New Notifications</h1>
+      <ul>
         {notifications.length > 0 ? (
           notifications.map((notification) => (
             <li key={notification.id}>
@@ -44,7 +42,7 @@ const NewNotificationsPage = () => {
           <p>No new notifications</p>
         )}
       </ul>
-      <button className="read-button" onClick={() => router.push('/notifications/read')}>
+      <button onClick={() => router.push('/notifications/read')}>
         Go to Read Notifications
       </button>
     </div>
