@@ -51,7 +51,7 @@ const NewNotificationsPage = () => {
             </li>
           ))
         ) : (
-          <div className='bg-[#292929] px-6 py-2 border-[#4A4BC5] border rounded-2xl text-[#a1a1a1] font-medium my-4 '>No new notifications ^_^</div>
+          <div className='bg-[#292929] px-6 py-2 border-[#4A4BC5] border rounded-2xl text-[#a1a1a1] font-medium my-4 break-words'>No new notifications ^_^</div>
         )}
       </ul>
     </div>
