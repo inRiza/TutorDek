@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
@@ -7,7 +7,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   prefix: "",
   theme: {
     container: {
@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['SF Pro Rounded', 'sans-serif'], // This will be the default sans-serif font
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -74,7 +77,20 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config
+  plugins: [
+    require("tailwindcss-animate"),
+    function ({ addUtilities } : {addUtilities:any}) {
+      addUtilities({
+        '.multiline-truncate': {
+          display: '-webkit-box',
+          '-webkit-line-clamp': '1',
+          '-webkit-box-orient': 'vertical',
+          overflow: 'hidden',
+          'text-overflow': 'ellipsis',
+      },
+    });
+    },
+  ],
+} satisfies Config;
 
-export default config
+export default config;
