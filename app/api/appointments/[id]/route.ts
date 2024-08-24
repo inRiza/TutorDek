@@ -17,6 +17,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
             fullName: true,
             jurusan: true,
             description: true,
+            calendar: true,
           },
         },
       },

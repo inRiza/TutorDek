@@ -1,14 +1,17 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 export async function POST(req: Request) {
-  const { userId, description, jurusan } = await req.json();
+  const { userId, fullName, description, jurusan, phoneNumber, calendar } = await req.json();
 
   try {
     const updatedUser = await db.user.update({
       where: { id: parseInt(userId, 10) },
       data: {
+        fullName: fullName || '',
         description: description || '',
         jurusan: jurusan || '',
+        phoneNumber: phoneNumber || '',
+        calendar: calendar || '',
       },
     });
 

@@ -154,16 +154,27 @@ export async function DELETE(req: Request) {
     const { id } = await req.json();
     console.log('Attempting to delete appointment with ID:', id);
 
-    const deletedAppointment = await db.appointment.delete({
-      where: {
-        id: parseInt(id, 10),
-        creatorId: parseInt(session.user.id, 10),
-      },
-    }); 
+    const appointmentId = parseInt(id, 10);
+    const creatorId = parseInt(session.user.id, 10);
+
+    // Use a transaction to delete related assignments first, then the appointment
+    await db.$transaction([
+      db.appointmentAssignment.deleteMany({
+        where: { appointmentId: appointmentId },
+      }),
+      db.appointment.delete({
+        where: {
+          id: appointmentId,
+          creatorId: creatorId,
+        },
+      }),
+    ]);
+
     return NextResponse.json({ message: 'Appointment deleted successfully' }, { status: 200 });
   } catch (error) {
     console.error('Error deleting appointment:', error);
     return NextResponse.json({ error: 'Failed to delete appointment' }, { status: 500 });
   }
 }
+
 
