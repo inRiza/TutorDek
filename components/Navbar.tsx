@@ -33,7 +33,7 @@ export default function Navbar() {
   return (
     <nav>
         {/* Regular Navbar */}
-        <div className="flex justify-between items-center h-12 bg-[#292929] drop-shadow-[0_0_5px_rgba(0,0,0,0.40)] w-full mx-auto pr-4 sm:pr-6 md:px-6 lg:px-8 text-white">
+        <div className="fixed top-0 left-0 flex justify-between items-center h-12 bg-[#292929] drop-shadow-[0_0_5px_rgba(0,0,0,0.40)] min-w-full mx-auto pr-4 sm:pr-6 md:px-6 lg:px-8 text-white">
             <Link href='/'>
             <div className="flex items-center space-x-2">
             <button className='md:hidden px-4 py-4 hover:bg-[#252525]' 
@@ -47,16 +47,16 @@ export default function Navbar() {
             </div>
             </Link>
             <div className='hidden md:flex justify-between w-2/3 items-center'>
-            <Link href="/tutors" className={`${pathname === '/tutors' ? 'text-[#4A4BC5] hover:text-white' : 'text-white'} h-12 hover:bg-[#4A4BC5] px-4 flex items-center transition-color ease-in-out`}>
+            <Link href="/tutors" className={`${pathname === '/tutors' ? 'text-[#4A4BC5] hover:text-white' : 'text-white'} h-12 hover:bg-[#4A4BC5] px-4 flex items-center transition-color duration-100 ease-in-out`}>
             <div  className='hover:scale-110 transition-transform flex items-center space-x-2 ease-in-out'><FaChalkboardTeacher className='h-5'/> <span>Tutors</span></div>
             </Link>
-            <Link href="/schedule" className={`${pathname === '/schedule' ? 'text-[#4A4BC5] hover:text-white' : 'text-white'} hover:bg-[#4A4BC5] h-12 px-4 flex items-center transition-color ease-in-out`}>
+            <Link href="/schedule" className={`${pathname === '/schedule' ? 'text-[#4A4BC5] hover:text-white' : 'text-white'} hover:bg-[#4A4BC5] h-12 px-4 flex items-center transition-color ease-in-out duration-100`}>
             <div  className='hover:scale-110 transition-transform flex items-center space-x-2 ease-in-out'><FaCalendarAlt className='h-4'/> <span>Schedule</span></div>
             </Link>
-            <Link href="/notifications/new" className={`${pathname === '/notifications/new' || pathname === '/notifications/read' ? 'text-[#4A4BC5] hover:text-white' : 'text-white'} hover:bg-[#4A4BC5] px-4 h-12 flex item-center transition-color ease-in-out`}>
+            <Link href="/notifications/new" className={`${pathname === '/notifications/new' || pathname === '/notifications/read' ? 'text-[#4A4BC5] hover:text-white' : 'text-white'} hover:bg-[#4A4BC5] px-4 h-12 flex item-center transition-color ease-in-out duration-100`}>
             <div  className='hover:scale-110 transition-transform flex items-center space-x-2 ease-in-out'><FaBell className='h-4'/> <span>Notifications</span></div>
             </Link>
-            <Link href="/material" className={`${pathname === '/material' ? 'text-[#4A4BC5] hover:text-white' : 'text-white'} hover:bg-[#4A4BC5] h-12 px-4 flex item-center transition-color ease-in-out`}>
+            <Link href="/material" className={`${pathname === '/material' ? 'text-[#4A4BC5] hover:text-white' : 'text-white'} hover:bg-[#4A4BC5] h-12 px-4 flex item-center transition-color ease-in-out duration-100`}>
             <div  className='hover:scale-110 transition-transform flex items-center space-x-2 ease-in-out'><FaBook className='h-4'/> <span>Material</span></div>
             </Link>
             </div>
@@ -65,7 +65,7 @@ export default function Navbar() {
             <button 
                onClick={() => setIsDropdownOpen(!isDropdownOpen)} 
                className="hover:bg-[#4A4BC5] h-12 px-4 hover:text-white transform ease-in-out">
-               <div className='hover:scale-110 transition-transform ease-in-out flex items-center space-x-2 '><span>John Doe</span>
+               <div className='hover:scale-110 transition-transform ease-in-out flex items-center space-x-2 duration-100'><span>John Doe</span>
                <FaRegUserCircle /></div>
             </button>
             {isDropdownOpen && (
