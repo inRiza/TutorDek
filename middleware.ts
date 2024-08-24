@@ -15,7 +15,7 @@ export async function middleware(req: any) {
     return NextResponse.next();
   }
 
-  // If not logged in, allow access only to /, /sign-in, and /sign-up
+  // If not logged in, allow access only to /sign-in and /sign-up
   if (!token) {
     if (pathname === '/sign-in' || pathname === '/sign-up') {
       return NextResponse.next();
@@ -24,31 +24,35 @@ export async function middleware(req: any) {
     }
   }
 
-  // If logged in, prevent access to /sign-in and /sign-up
-  if (token && (pathname === '/sign-in' || pathname === '/sign-up')) {
-    if (token.role === 'Mahasiswa') {
-      return NextResponse.redirect(new URL('/', req.url));
-    } else if (token.role === 'Admin') {
-      return NextResponse.redirect(new URL('/admin', req.url));
-    } else if (token.role === 'Tutor') {
-      return NextResponse.redirect(new URL('/tutor', req.url));
-    }
-  }
-
-  // Role based
+  // If logged in, prevent access to /sign-in and /sign-up and redirect based on role
   if (token) {
-    if (token.role === 'Mahasiswa' && (pathname === '/admin' || pathname === '/tutor')) {
+    if (pathname === '/sign-in' || pathname === '/sign-up') {
+      if (token.role === 'Mahasiswa') {
         return NextResponse.redirect(new URL('/', req.url));
+      } else if (token.role === 'Admin') {
+        return NextResponse.redirect(new URL('/admin/users', req.url));
+      } else if (token.role === 'Tutor') {
+        return NextResponse.redirect(new URL('/tutor/appointments', req.url));
+      }
     }
-    if (token.role === 'Tutor' && (pathname === '/admin' || pathname === '/')) {
-        return NextResponse.redirect(new URL('/tutor', req.url));
-    }
-    if (token.role === 'Admin' && (pathname === '/' || pathname === '/tutor')) {
-        return NextResponse.redirect(new URL('/admin', req.url));
+
+    // Role-based redirection
+    if (token.role === 'Mahasiswa') {
+      if (pathname.startsWith('/admin') || pathname.startsWith('/tutor')) {
+        return NextResponse.redirect(new URL('/', req.url));
+      }
+    } else if (token.role === 'Admin') {
+      if (!pathname.startsWith('/admin')) {
+        return NextResponse.redirect(new URL('/admin/users', req.url));
+      }
+    } else if (token.role === 'Tutor') {
+      if (!pathname.startsWith('/tutor')) {
+        return NextResponse.redirect(new URL('/tutor/appointments', req.url));
+      }
     }
   }
 
-  // If logged in, allow access to any other path
+  // If logged in and no redirection is needed, allow access to the path
   return NextResponse.next();
 }
 
