@@ -49,6 +49,7 @@ declare module "next-auth" {
         peopleCount: number;
         status: string;
         duration: Duration;
+        media: Media;
         appointment: Appointment; // Nested Appointment
         notifications?: Notification[]; // New
     }

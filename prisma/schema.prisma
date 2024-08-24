@@ -79,6 +79,7 @@ model AppointmentAssignment {
   peopleCount   Int                    // Number of people the user will bring (1 to 5)
   status        AssignmentStatus       @default(Pending)
   duration      Duration               @default(ONE_HOUR)
+  media         Media
   notifications Notification[]         @relation("AssignmentNotifications")
 }
 
