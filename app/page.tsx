@@ -1,9 +1,15 @@
 "use client";
 import { useSession } from "next-auth/react";
-import UserAccountButton from '@/components/UserAccountButton';
-import User from '@/components/User';
 import { useEffect, useState } from 'react';
 import Link from "next/link";
+import Image from "next/image";
+import Circle from "@/public/circle.svg";
+import Circle2 from "@/public/circle2.svg";
+import Person from "@/public/person.svg"
+import Logo from "@/public/logo.svg"
+import {IoMdSearch} from "react-icons/io"
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 
 export enum Weekday {
   Monday = "Monday",
@@ -87,61 +93,85 @@ const Page = () => {
 
   return (
     <main>
-      <h2>
-        {session?.user.fullName} {session?.user.phoneNumber} {session?.user.role}
-      </h2>
-      {session?.user && <UserAccountButton />}
-      <User />
+      <div className="w-full h-full bg-[#1C1C1C] flex flex-col  ">
+      <Navbar/>
+        <div className="bg-[#F4F1E9] min-h-screen h-full relative flex w-full py-14">
+            <Image 
+                src={Circle}
+                alt="bg"
+                className="absolute right-44 top-0"
+              />
+              <Image 
+                src={Circle2}
+                alt="bg"
+                className="absolute left-0 -top-10"
+              />
+              <div className="z-20">
+                <div className="grid lg:grid-cols-2 py-12 px-20">
+                  <Image 
+                      src={Person}
+                      alt="person"
+                      className="w-[1000px] lg:order-2 order-1"
+                    />
+                  <div className="flex flex-col lg:items-start items-center mt-5 lg:mt-0 justify-center lg:order-1 order-2">
+                    <div className="flex gap-5 items-center">
+                      <Image 
+                        src={Logo}
+                        alt="logo"
+                        className="w-12"
+                      />
+                      <h1 className="font-bold text-4xl text-[#7879ED]"> Tutor <span className="text-[#E6BB30]"> Dek </span></h1>
+                    </div>
+                    <h1 className="text-6xl text-center lg:pb-0 lg:text-left lg:text-7xl xl:text-8xl font-bold mt-3"> Empower your academic journey. </h1>
+                    <p className="mt-10 text-center lg:text-left"> Connect with expert tutors, schedule sessions, and access study materials </p>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div className="flex flex-col p-10 md:py-11 md:px-20">
+          <div className="relative w-[80%] md:w-[70%] lg:w-[50%] mt-10 mb-4 mx-auto">
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="py-3 md:py-4 pl-6 pr-12 bg-[#292929] border-[1px] border-[#A1A1A1] rounded-full w-full font-semibold text-[#A1A1A1] focus:outline-[#7879ED]"
+            />
+            <IoMdSearch className="absolute right-6 top-1/2 transform -translate-y-1/2 h-5 w-5 text-[#A1A1A1]" />
+          </div>
+          <h3 className="text-white font-bold text-lg md:text-2xl items-start mt-5 mb-5"> Available Tutor </h3>
 
-      <Link href="/appointments">appointments</Link>
-      <Link href="/materials">materials</Link>
-
-      {/* Notification Button */}
-      <Link href="/notifications/new">
-        <button
-          className={`p-2 rounded ${hasNewNotifications ? 'bg-red-500 text-white' : 'bg-gray-300'}`}
-        >
-          Notification
-        </button>
-      </Link>
-
-      {/* Search Bar */}
-      <input
-        type="text"
-        placeholder="Search by title or creator name"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-
-      <ul>
-        {filteredAppointments.map((appointment) => (
-          <li key={appointment.id}>
-            <Link href={`/appointments/${appointment.id}`}>
-              <h3>{appointment.title}</h3>
-              <p>{appointment.description}</p>
-              <h4>Creator Information:</h4>
-              {appointment.creator ? (
-                <>
-                  <p>Name: {appointment.creator.fullName}</p>
-                  <p>Jurusan: {appointment.creator.jurusan}</p>
-                  <p>Description: {appointment.creator.description}</p>
-                </>
-              ) : (
-                <p>Creator information not available</p>
-              )}
-              <h4>Available Days and Times:</h4>
-              <ul>
-                {appointment.availableDays.map((dayTimeRange, index) => (
-                  <li key={index}>
-                    {dayTimeRange.day}: {dayTimeRange.timeRange.start} - {dayTimeRange.timeRange.end}
-                  </li>
-                ))}
-              </ul>
-              <p>Media: {appointment.media}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {filteredAppointments.map((appointment) => (
+            <div className="border-[1px] border-[#7879ED] p-5 rounded-xl bg-[#292929] text-white flex flex-col justify-between hover:scale-[1.05] duration-500 transition-all" key={appointment.id}>
+              <Link href={`/appointments/${appointment.id}`}>
+                <h3 className="text-2xl font-bold text-[#7879ED]">{appointment.title}</h3>
+                {/* <p className="text-[#A1A1A1] multiline-truncate">{appointment.description}</p> */}
+                {appointment.creator ? (
+                  <>
+                    <p className="mt-5 text-white font-bold text-xl">{appointment.creator.fullName}</p>
+                    <p className="text-[#A1A1A1]">{appointment.creator.jurusan}</p>
+                    {/* <p>Description: {appointment.creator.description}</p> */}
+                  </>
+                ) : (
+                  <p>Creator information not available</p>
+                )}
+                <div className="mt-5 bg-[#E6BB30] rounded-lg p-5 text-black">
+                  {appointment.availableDays.map((dayTimeRange, index) => (
+                    <div className="font-bold text-lg" key={index}>
+                      {dayTimeRange.day}: {dayTimeRange.timeRange.start} - {dayTimeRange.timeRange.end}
+                    </div>
+                  ))}
+                <p className="font-semibold">{appointment.media}</p>
+              </div>
+              </Link>
+              <p className="text-right mt-3 text-white text-sm"> See more</p>
+            </div>
+          ))}
+        </div>
+        </div>
+      </div>
+      <Footer/>
     </main>
   );
 };
