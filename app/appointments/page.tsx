@@ -4,7 +4,7 @@ import Link from "next/link";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-export enum AssignmentStatus {
+enum AssignmentStatus {
   Pending = 'Pending',
   Accepted = 'Accepted',
   Declined = 'Declined',

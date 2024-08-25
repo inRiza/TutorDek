@@ -5,7 +5,7 @@ import { IoMdArrowDropleft } from "react-icons/io";
 import Link from 'next/link';
 import { useToast } from '@/components/ui/use-toast';
 
-export enum Weekday {
+enum Weekday {
   Monday = "Monday",
   Tuesday = "Tuesday",
   Wednesday = "Wednesday",
@@ -15,13 +15,13 @@ export enum Weekday {
   Sunday = "Sunday",
 }
 
-export enum Media {
+enum Media {
   Online = "Online",
   Offline = "Offline",
   Hybrid = "Hybrid",
 }
 
-export enum Duration {
+enum Duration {
   ONE_HOUR = "1",
   ONE_AND_HALF = "1.5",
   TWO_HOURS = "2",

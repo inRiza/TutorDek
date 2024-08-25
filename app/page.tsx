@@ -11,7 +11,7 @@ import {IoMdSearch} from "react-icons/io"
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
-export enum Weekday {
+enum Weekday {
   Monday = "Monday",
   Tuesday = "Tuesday",
   Wednesday = "Wednesday",
@@ -21,7 +21,7 @@ export enum Weekday {
   Sunday = "Sunday",
 }
 
-export enum Media {
+enum Media {
   Online = "Online",
   Offline = "Offline",
   Hybrid = "Hybrid",

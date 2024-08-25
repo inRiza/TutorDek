@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 import TutorNav from "@/components/TutorNav";
 import { useSession } from "next-auth/react";
 
-export enum AssignmentStatus {
+enum AssignmentStatus {
   Pending = 'Pending',
   Accepted = 'Accepted',
   Declined = 'Declined',
 }
 
-export enum Duration {
+enum Duration {
   ONE_HOUR = "1",
   ONE_AND_HALF = "1.5",
   TWO_HOURS = "2",
