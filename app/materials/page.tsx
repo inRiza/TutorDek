@@ -29,7 +29,7 @@ const UserDashboard = () => {
   );
 
   return (
-    <section>
+    <section className='overflow-x-hidden'>
       <Navbar/>
       <div className='px-10 py-20 flex flex-col items-center min-h-screen h-full bg-[#1C1C1C]'>
         <h1 className="text-6xl md:text-7xl font-bold mb-4 text-[#7879ED]">Materials</h1>

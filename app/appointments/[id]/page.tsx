@@ -121,7 +121,7 @@ const AppointmentDetailPage = () => {
   }
 
   return (
-    <section>
+    <section className='overflow-x-hidden'>
       <div className='w-full min-h-screen h-full bg-[#1C1C1C] flex flex-col p-10 md:p-20'>
         <Link href="#" onClick={(e) => { e.preventDefault(); window.history.back(); }} className='flex gap-3 items-center'>
           <IoMdArrowDropleft className='text-[#A1A1A1] text-xl'/>

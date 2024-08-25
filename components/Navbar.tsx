@@ -58,7 +58,7 @@ export default function Navbar() {
   return (
     <nav className='z-50'>
         {/* Regular Navbar */}
-        <div className="fixed top-0 left-0 flex justify-between items-center h-12 bg-[#292929] drop-shadow-[0_0_5px_rgba(0,0,0,0.40)] min-w-full mx-auto pr-4 sm:pr-6 md:px-6 lg:px-8 text-white">
+        <div className="fixed top-0 left-0 flex justify-between items-center h-12 bg-[#292929] drop-shadow-[0_0_5px_rgba(0,0,0,0.40)] w-full mx-auto pr-4 sm:pr-6 md:px-6 lg:px-8 text-white">
             <Link href='/'>
             <div className="flex items-center space-x-2">
             <button className='md:hidden px-4 py-4 hover:bg-[#252525]' 

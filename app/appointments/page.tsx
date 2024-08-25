@@ -70,7 +70,7 @@ const UserDashboard = () => {
   }, []);
 
   return (
-    <section>
+    <section className='overflow-x-hidden'>
       <Navbar/>
       <div className='bg-[#1C1C1C] text-white min-h-screen h-full w-full flex flex-col'>
         <div className='p-20'>

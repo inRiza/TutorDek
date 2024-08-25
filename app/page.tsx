@@ -92,8 +92,8 @@ const Page = () => {
   });
 
   return (
-    <main>
-      <div className="w-full h-full bg-[#1C1C1C] flex flex-col  ">
+    <main className="overflow-x-hidden">
+      <div className="w-full h-full bg-[#1C1C1C] flex flex-col">
       <Navbar/>
         <div className="bg-[#F4F1E9] min-h-screen h-full relative flex w-full py-14">
             <Image 

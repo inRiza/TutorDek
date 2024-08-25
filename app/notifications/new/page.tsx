@@ -32,7 +32,7 @@ const NewNotificationsPage = () => {
   }, []);
 
   return (
-    <section>
+    <section className='overflow-x-hidden'>
       <Navbar/>
       <div className='w-full min-h-screen h-full bg-[#1C1C1C]'>
         <div className=''>
