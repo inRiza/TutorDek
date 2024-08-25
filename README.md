@@ -120,6 +120,6 @@ To build the application for production, run:
 | Adinda Putri                      | 19623137   | Data Scientist    |
 | Andi Syaichul Mubaraq             | 19623084   | Data Scientist    |
 | Haegen Quinston                   | 19623009   | Data Scientist    |
-| Katry Kezia                       | 19623184   | Game Developer    |
-| Rafael Marchel Darma Wijaya       | 19623198   | Game Developer    |
+| Katry Kezia                       | 19623184   | Software Developer|
+| Rafael Marchel Darma Wijaya       | 19623198   | Software Developer|
 | Rasyid Rizky Susilo N.            | 19623081   | UI/UX Designer    |
