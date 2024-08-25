@@ -9,6 +9,18 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "TutorDek",
   description: "TutorDek is an advanced platform designed to connect students with tutors for personalized learning sessions. With features like appointment scheduling, assignment management, and material sharing, TutorDek streamlines the educational experience for both students and tutors, ensuring seamless communication and efficient learning.",
+  icons: {
+    icon: [
+      'favicon.ico?v=4',
+    ],
+    apple : [
+      '/apple-touch-icon.png?v=4',
+    ],
+    shortcut: [
+      '/apple-touch-icon.png'
+    ]
+  },
+  manifest: '/site.webmanifest'
 };
 
 export default function RootLayout({
