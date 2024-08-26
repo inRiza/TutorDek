@@ -66,6 +66,7 @@ const Page = () => {
       const response = await fetch("/api/appointments/user");
       const data = await response.json();
       setAppointments(data);
+      console.log(appointments)
     };
 
     const fetchNotifications = async () => {
