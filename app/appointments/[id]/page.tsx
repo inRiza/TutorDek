@@ -211,7 +211,7 @@ const AppointmentDetailPage = () => {
               <div className="mb-4">
                 <label className="block mb-2 font-semibold text-base text-white">Media Option:</label>
                 <select
-                  value={selectedMediaOption || appointment.media}
+                  value={selectedMediaOption || Media.Online}
                   onChange={(e) => setSelectedMediaOption(e.target.value as Media)}
                   className="border-[1px] p-2 rounded-lg font-semibold text-base text-white bg-[#292929] border-[#A1A1A1] focus:outline-[#7879ED] w-full"
                 >
