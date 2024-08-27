@@ -81,13 +81,15 @@ const AppointmentDetailPage = () => {
       return;
     }
 
+    const finalMedia = selectedMediaOption || (appointment?.media === Media.Hybrid ? Media.Online : appointment?.media);
+
     const appointmentAssignment = {
       appointmentId: appointment?.id,
       selectedDate: new Date(selectedDate),
       selectedTime: new Date(`${selectedDate}T${selectedTime}:00`),
       peopleCount,
       duration: selectedDuration,
-      media: selectedMediaOption || appointment?.media,
+      media: finalMedia,
     };
 
     const response = await fetch('/api/appointment-assignments', {
